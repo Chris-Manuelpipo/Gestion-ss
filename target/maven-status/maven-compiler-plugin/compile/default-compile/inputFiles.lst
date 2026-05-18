@@ -1,0 +1,15 @@
+/home/chris/gestion-ss/src/main/java/com/securitesociale/model/Assure.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/controller/MainController.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/App.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/controller/DashboardController.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/config/DatabaseManager.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/controller/AuthController.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/dao/AssureDAO.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/util/PasswordUtil.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/dao/MedecinDAO.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/model/Role.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/model/TypeMedecin.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/dao/AgentDAO.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/util/SessionManager.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/model/Medecin.java
+/home/chris/gestion-ss/src/main/java/com/securitesociale/util/AlertUtil.java

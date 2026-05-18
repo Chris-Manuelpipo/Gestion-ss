@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.securitesociale.controller.AuthController"
+      prefHeight="600" prefWidth="900">
+
+    <!-- ═══════════════ PANNEAU GAUCHE — IDENTITÉ VISUELLE ═══════════════ -->
+    <VBox styleClass="login-brand" alignment="CENTER" spacing="28"
+          HBox.hgrow="ALWAYS">
+        <padding><Insets top="60" right="48" bottom="48" left="48"/></padding>
+
+        <!-- Logo -->
+        <Label styleClass="login-logo" text="SS"/>
+
+        <!-- Titre -->
+        <VBox spacing="6" alignment="CENTER">
+            <Label styleClass="login-brand-title" text="Sécurité Sociale"/>
+            <Label styleClass="login-brand-subtitle" text="Système de Gestion"/>
+        </VBox>
+
+        <!-- Description -->
+        <Label styleClass="login-brand-desc"
+               text="Gérez les dossiers médicaux, les consultations et les remboursements en toute sécurité."
+               wrapText="true" textAlignment="CENTER" maxWidth="280"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- Version -->
+        <Label styleClass="login-version" text="v1.0.0  ·  ENSPY  ·  Yaoundé 2026"/>
+    </VBox>
+
+    <!-- ═══════════════ PANNEAU DROIT — FORMULAIRE ═══════════════ -->
+    <VBox styleClass="login-form-panel" alignment="CENTER_LEFT"
+          HBox.hgrow="ALWAYS">
+        <padding><Insets top="70" right="64" bottom="64" left="64"/></padding>
+
+        <!-- En-tête -->
+        <VBox spacing="6">
+            <Label styleClass="login-welcome"     text="Connexion"/>
+            <Label styleClass="login-welcome-sub" text="Bienvenue. Identifiez-vous pour accéder au système."/>
+        </VBox>
+
+        <Region minHeight="40"/>
+
+        <!-- Identifiant -->
+        <VBox spacing="7">
+            <Label styleClass="field-label" text="Identifiant"/>
+            <TextField fx:id="loginField"
+                       styleClass="text-field-modern"
+                       promptText="Votre identifiant"
+                       maxWidth="1.7976931348623157E308"/>
+        </VBox>
+
+        <Region minHeight="18"/>
+
+        <!-- Mot de passe -->
+        <VBox spacing="7">
+            <Label styleClass="field-label" text="Mot de passe"/>
+            <PasswordField fx:id="passwordField"
+                           styleClass="text-field-modern"
+                           promptText="Votre mot de passe"
+                           maxWidth="1.7976931348623157E308"/>
+        </VBox>
+
+        <Region minHeight="12"/>
+
+        <!-- Message d'erreur (masqué par défaut) -->
+        <Label fx:id="errorLabel"
+               styleClass="error-label"
+               text=""
+               maxWidth="1.7976931348623157E308"
+               wrapText="true"
+               visible="false"
+               managed="false"/>
+
+        <Region minHeight="28"/>
+
+        <!-- Bouton connexion -->
+        <Button fx:id="loginButton"
+                styleClass="btn-primary"
+                text="Se connecter"
+                maxWidth="1.7976931348623157E308"
+                onAction="#handleLogin"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- Pied de page -->
+        <Label styleClass="login-footer"
+               text="© 2026 ENSPY — Université de Yaoundé I"
+               maxWidth="1.7976931348623157E308"
+               alignment="CENTER"/>
+    </VBox>
+
+</HBox>

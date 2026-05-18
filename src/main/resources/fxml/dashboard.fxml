@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.securitesociale.controller.DashboardController"
+            fitToWidth="true" fitToHeight="false"
+            styleClass="content-scroll"
+            hbarPolicy="NEVER">
+
+    <VBox spacing="28">
+        <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+        <!-- ── En-tête ─────────────────────────────────────────────── -->
+        <VBox spacing="4">
+            <Label fx:id="welcomeLabel" styleClass="dashboard-welcome" text="Bonjour !"/>
+            <Label styleClass="dashboard-subtitle"
+                   text="Voici un aperçu de l'activité du système aujourd'hui."/>
+        </VBox>
+
+        <!-- ── Cartes statistiques ─────────────────────────────────── -->
+        <HBox spacing="16">
+            <VBox styleClass="stat-card stat-card-blue" HBox.hgrow="ALWAYS" spacing="8">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label styleClass="stat-icon" text="👥"/>
+                <Label fx:id="totalAssures" styleClass="stat-number" text="—"/>
+                <Label styleClass="stat-label" text="Assurés enregistrés"/>
+            </VBox>
+            <VBox styleClass="stat-card stat-card-green" HBox.hgrow="ALWAYS" spacing="8">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label styleClass="stat-icon" text="👨‍⚕️"/>
+                <Label fx:id="totalMedecins" styleClass="stat-number-green" text="—"/>
+                <Label styleClass="stat-label" text="Médecins actifs"/>
+            </VBox>
+            <VBox styleClass="stat-card stat-card-orange" HBox.hgrow="ALWAYS" spacing="8">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label styleClass="stat-icon" text="📋"/>
+                <Label fx:id="consultationsAujourdhui" styleClass="stat-number-orange" text="—"/>
+                <Label styleClass="stat-label" text="Consultations aujourd'hui"/>
+            </VBox>
+            <VBox styleClass="stat-card stat-card-red" HBox.hgrow="ALWAYS" spacing="8">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label styleClass="stat-icon" text="💰"/>
+                <Label fx:id="remboursementsAttente" styleClass="stat-number-red" text="—"/>
+                <Label styleClass="stat-label" text="Remboursements en attente"/>
+            </VBox>
+        </HBox>
+
+        <!-- ── Actions rapides ─────────────────────────────────────── -->
+        <VBox styleClass="card" spacing="16">
+            <Label styleClass="card-title" text="Actions rapides"/>
+            <Label styleClass="card-subtitle"
+                   text="Accédez directement aux fonctions les plus utilisées."/>
+            <HBox spacing="12">
+                <Button styleClass="btn-primary"   text="+ Nouvel assuré"/>
+                <Button styleClass="btn-secondary" text="+ Nouveau médecin"/>
+                <Button styleClass="btn-secondary" text="Nouvelle consultation"/>
+                <Button styleClass="btn-secondary" text="Enregistrer un remboursement"/>
+            </HBox>
+        </VBox>
+
+        <!-- ── Informations système ───────────────────────────────── -->
+        <VBox styleClass="card" spacing="12">
+            <Label styleClass="card-title" text="Informations système"/>
+            <HBox spacing="40">
+                <VBox spacing="4">
+                    <Label styleClass="info-key"   text="Application"/>
+                    <Label styleClass="info-value" text="Gestion Sécurité Sociale v1.0.0"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label styleClass="info-key"   text="Institution"/>
+                    <Label styleClass="info-value" text="ENSPY · Université de Yaoundé I"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label styleClass="info-key"   text="Base de données"/>
+                    <Label styleClass="info-value" text="PostgreSQL · securite_sociale"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

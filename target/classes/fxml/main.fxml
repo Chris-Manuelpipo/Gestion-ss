@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.securitesociale.controller.MainController"
+            prefHeight="760" prefWidth="1200">
+
+    <!-- ══════════════════════ SIDEBAR (gauche) ══════════════════════ -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="244" minWidth="244">
+
+            <!-- Zone logo -->
+            <VBox styleClass="sidebar-logo-area" spacing="2">
+                <padding><Insets top="20" right="18" bottom="20" left="18"/></padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label styleClass="sidebar-logo-badge" text="SS"/>
+                    <VBox spacing="3">
+                        <Label styleClass="sidebar-app-name" text="Sécurité Sociale"/>
+                        <Label styleClass="sidebar-app-sub"  text="Système de gestion"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Menu de navigation (rempli dynamiquement) -->
+            <VBox fx:id="menuContainer" spacing="3" VBox.vgrow="ALWAYS">
+                <padding><Insets top="14" right="10" bottom="10" left="10"/></padding>
+            </VBox>
+
+            <!-- Zone utilisateur -->
+            <VBox styleClass="sidebar-user-area" spacing="6">
+                <padding><Insets top="14" right="16" bottom="14" left="16"/></padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="userAvatarLabel" styleClass="sidebar-avatar" text="A"/>
+                    <VBox spacing="3">
+                        <Label fx:id="sidebarUsername" styleClass="sidebar-username" text=""/>
+                        <Label fx:id="sidebarRole"     styleClass="sidebar-role"     text=""/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- ══════════════════════ TOPBAR (haut) ══════════════════════ -->
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="0" right="28" bottom="0" left="28"/></padding>
+
+            <!-- Titre de la page courante -->
+            <VBox spacing="2">
+                <Label fx:id="topbarPageTitle" styleClass="topbar-title" text="Tableau de bord"/>
+                <Label fx:id="topbarDate"      styleClass="topbar-date"  text=""/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Déconnexion -->
+            <Button styleClass="btn-logout" text="⏻  Déconnexion" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- ══════════════════════ CONTENU (centre) ══════════════════════ -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+
+</BorderPane>

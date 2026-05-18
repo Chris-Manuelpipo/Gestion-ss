@@ -1,0 +1,15 @@
+com/securitesociale/dao/MedecinDAO.class
+com/securitesociale/dao/AgentDAO.class
+com/securitesociale/App.class
+com/securitesociale/controller/AuthController.class
+com/securitesociale/controller/DashboardController.class
+com/securitesociale/util/SessionManager.class
+com/securitesociale/dao/AssureDAO.class
+com/securitesociale/config/DatabaseManager.class
+com/securitesociale/model/TypeMedecin.class
+com/securitesociale/model/Assure.class
+com/securitesociale/model/Medecin.class
+com/securitesociale/controller/MainController.class
+com/securitesociale/model/Role.class
+com/securitesociale/util/PasswordUtil.class
+com/securitesociale/util/AlertUtil.class
