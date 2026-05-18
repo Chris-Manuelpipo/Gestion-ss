@@ -503,3 +503,90 @@
     -fx-font-size: 12px;
     -fx-padding: 6px 10px;
 }
+
+/* ── DASHBOARD PROFESSIONNEL ─────────────────────────────────────────── */
+
+.kpi-icon-box {
+    -fx-min-width: 46px;  -fx-max-width: 46px;
+    -fx-min-height: 46px; -fx-max-height: 46px;
+    -fx-alignment: CENTER;
+    -fx-font-size: 20px;
+    -fx-background-radius: 12px;
+}
+.kpi-icon-blue   { -fx-background-color: #DBEAFE; }
+.kpi-icon-green  { -fx-background-color: #D1FAE5; }
+.kpi-icon-violet { -fx-background-color: #EDE9FE; }
+.kpi-icon-amber  { -fx-background-color: #FEF3C7; }
+.kpi-icon-rose   { -fx-background-color: #FFE4E6; }
+
+.kpi-number {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+.kpi-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+.kpi-sublabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+}
+
+.quick-action-row {
+    -fx-background-color: transparent;
+    -fx-text-fill: #374151;
+    -fx-font-size: 13.5px;
+    -fx-padding: 13px 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-max-width: Infinity;
+}
+.quick-action-row:hover {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #2563EB;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+.section-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+}
+
+.info-chip {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 12px;
+    -fx-background-radius: 20px;
+}
+
+.divider-dot {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 16px;
+}
+
+.status-dot-green {
+    -fx-background-color: #22C55E;
+    -fx-min-width: 8px; -fx-max-width: 8px;
+    -fx-min-height: 8px; -fx-max-height: 8px;
+    -fx-background-radius: 4px;
+}
+
+.welcome-date-chip {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+    -fx-padding: 7px 16px;
+}

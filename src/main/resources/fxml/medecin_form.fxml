@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane fitToWidth="true"
+    style="-fx-background: white; -fx-background-color: white;"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.securitesociale.controller.MedecinFormController">
+
+    <VBox spacing="20" style="-fx-background-color: white; -fx-min-width: 560px; -fx-max-width: 600px;">
+        <padding><Insets top="32" right="32" bottom="32" left="32"/></padding>
+
+        <!-- Titre -->
+        <Label text="Inscription d'un médecin"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+        <Label text="Remplissez les informations du nouveau médecin"
+               style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+
+        <Separator/>
+
+        <!-- Nom / Prénom -->
+        <HBox spacing="16">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Nom *" styleClass="field-label"/>
+                <TextField fx:id="nomField" promptText="Nom de famille"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Prénom *" styleClass="field-label"/>
+                <TextField fx:id="prenomField" promptText="Prénom"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <!-- Date naissance / Sexe -->
+        <HBox spacing="16">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Date de naissance" styleClass="field-label"/>
+                <DatePicker fx:id="dateNaissancePicker" promptText="jj/mm/aaaa"
+                            styleClass="date-picker-modern" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Sexe" styleClass="field-label"/>
+                <ComboBox fx:id="sexeCombo" promptText="Sélectionner..."
+                          styleClass="combo-box-modern" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <!-- Email -->
+        <VBox spacing="6">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="emailField" promptText="email@exemple.com"
+                       styleClass="text-field-modern"/>
+        </VBox>
+
+        <!-- Type médecin -->
+        <VBox spacing="6">
+            <Label text="Type de médecin *" styleClass="field-label"/>
+            <ComboBox fx:id="typeCombo" promptText="Sélectionner le type..."
+                      styleClass="combo-box-modern" maxWidth="Infinity"
+                      onAction="#handleTypeChange"/>
+        </VBox>
+
+        <!-- Type formation — affiché si Généraliste -->
+        <VBox fx:id="formationSection" spacing="6" visible="false" managed="false">
+            <Label text="Type de formation" styleClass="field-label"/>
+            <TextField fx:id="formationField"
+                       promptText="Ex : Médecine générale, Pédiatrie…"
+                       styleClass="text-field-modern"/>
+        </VBox>
+
+        <!-- Nom spécialité — affiché si Spécialiste -->
+        <VBox fx:id="specialiteSection" spacing="6" visible="false" managed="false">
+            <Label text="Nom de la spécialité *" styleClass="field-label"/>
+            <TextField fx:id="specialiteField"
+                       promptText="Ex : Cardiologie, Neurologie…"
+                       styleClass="text-field-modern"/>
+        </VBox>
+
+        <Separator/>
+
+        <!-- Login -->
+        <VBox spacing="6">
+            <Label text="Login *" styleClass="field-label"/>
+            <TextField fx:id="loginField"
+                       promptText="Identifiant de connexion unique"
+                       styleClass="text-field-modern"/>
+            <Label fx:id="loginErrorLabel" text=""
+                   style="-fx-text-fill: #DC2626; -fx-font-size: 12px;"
+                   visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Bloc mot de passe généré -->
+        <VBox spacing="10"
+              style="-fx-background-color: #F0FDF4; -fx-padding: 16;
+                     -fx-background-radius: 10; -fx-border-color: #BBF7D0;
+                     -fx-border-radius: 10; -fx-border-width: 1;">
+            <Label text="Mot de passe généré automatiquement"
+                   style="-fx-font-weight: bold; -fx-text-fill: #15803D; -fx-font-size: 13px;"/>
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label fx:id="passwordLabel" text="MedOSS@2026"
+                       style="-fx-font-family: monospace; -fx-font-size: 16px;
+                              -fx-font-weight: bold; -fx-text-fill: #1E293B;
+                              -fx-background-color: white; -fx-padding: 8 14;
+                              -fx-background-radius: 6; -fx-border-color: #D1FAE5;
+                              -fx-border-radius: 6; -fx-border-width: 1;"/>
+                <Button fx:id="copyBtn" text="📋 Copier" styleClass="btn-secondary"
+                        onAction="#handleCopyPassword"
+                        style="-fx-pref-height: 36px; -fx-font-size: 12px;"/>
+            </HBox>
+            <Label text="Le médecin devra changer son mot de passe à la première connexion."
+                   style="-fx-text-fill: #64748B; -fx-font-size: 12px;" wrapText="true"/>
+        </VBox>
+
+        <!-- Message d'erreur global -->
+        <Label fx:id="errorLabel" text="" styleClass="error-label"
+               visible="false" managed="false" wrapText="true"/>
+
+        <!-- Boutons -->
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <Button text="Annuler" styleClass="btn-secondary" onAction="#handleCancel"/>
+            <Button fx:id="saveBtn" text="✔ Enregistrer le médecin"
+                    styleClass="btn-primary" onAction="#handleSave"/>
+        </HBox>
+
+    </VBox>
+</ScrollPane>

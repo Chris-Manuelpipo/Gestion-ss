@@ -22,6 +22,9 @@ import java.util.Map;
 
 public class MainController {
 
+    /** Référence statique utilisée par les sous-contrôleurs pour déclencher la navigation. */
+    public static MainController instance;
+
     @FXML private StackPane contentArea;
     @FXML private VBox      menuContainer;
     @FXML private Label     sidebarUsername;
@@ -36,6 +39,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        instance = this;
         SessionManager session = SessionManager.getInstance();
 
         // Remplir les infos utilisateur

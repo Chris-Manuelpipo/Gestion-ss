@@ -158,8 +158,52 @@ public class DatabaseManager {
             """
         };
 
+        // Migrations — garantit la présence de toutes les colonnes même si la table
+        // a été créée par une version antérieure du schéma.
+        String[] migrations = {
+            "ALTER TABLE IF EXISTS medecins ADD COLUMN IF NOT EXISTS type_medecin   VARCHAR(20)",
+            "ALTER TABLE IF EXISTS medecins ADD COLUMN IF NOT EXISTS type_formation  VARCHAR(100)",
+            "ALTER TABLE IF EXISTS medecins ADD COLUMN IF NOT EXISTS nom_specialite  VARCHAR(100)",
+            "ALTER TABLE IF EXISTS medecins ADD COLUMN IF NOT EXISTS actif           BOOLEAN DEFAULT TRUE",
+            "ALTER TABLE IF EXISTS assures  ADD COLUMN IF NOT EXISTS actif           BOOLEAN DEFAULT TRUE",
+            // Colonnes Module 3 — feuilles_maladie
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS version               INT DEFAULT 1",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS temperature            NUMERIC(4,1)",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS tension_arterielle     VARCHAR(20)",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS poids                  NUMERIC(5,2)",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS taille                 NUMERIC(5,2)",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS frequence_cardiaque    INT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS frequence_respiratoire INT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS saturation_oxygene     NUMERIC(4,1)",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS antecedents            TEXT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS symptomes              TEXT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS diagnostic             TEXT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS traitement_prescrit    TEXT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS observations           TEXT",
+            "ALTER TABLE IF EXISTS feuilles_maladie ADD COLUMN IF NOT EXISTS num_medecin            INT REFERENCES medecins(num_medecin)",
+            // Prescriptions — champ dosage
+            "ALTER TABLE IF EXISTS prescriptions ADD COLUMN IF NOT EXISTS dosage VARCHAR(100)",
+            // Remboursements — colonnes Module 4
+            "ALTER TABLE IF EXISTS remboursements ADD COLUMN IF NOT EXISTS date_remboursement TIMESTAMP DEFAULT NOW()",
+            "ALTER TABLE IF EXISTS remboursements ADD COLUMN IF NOT EXISTS agent_login        VARCHAR(100)",
+            // Table versions feuilles — Module 3
+            """
+            CREATE TABLE IF NOT EXISTS feuilles_maladie_versions (
+                id          SERIAL PRIMARY KEY,
+                num_feuille INT NOT NULL REFERENCES feuilles_maladie(num_feuille),
+                version     INT NOT NULL,
+                snapshot    JSONB NOT NULL,
+                modifie_par INT REFERENCES medecins(num_medecin),
+                modifie_le  TIMESTAMP DEFAULT NOW()
+            )
+            """
+        };
+
         try (Connection conn = getConnection(); Statement st = conn.createStatement()) {
             for (String sql : ddl) {
+                st.execute(sql);
+            }
+            for (String sql : migrations) {
                 st.execute(sql);
             }
             System.out.println("[DB] Schéma initialisé avec succès");

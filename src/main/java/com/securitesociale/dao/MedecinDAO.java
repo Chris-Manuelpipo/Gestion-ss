@@ -113,6 +113,79 @@ public class MedecinDAO {
         }
     }
 
+    public int countGeneralistes() {
+        String sql = "SELECT COUNT(*) FROM medecins WHERE actif = TRUE AND type_medecin = 'GENERALISTE'";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int countSpecialistes() {
+        String sql = "SELECT COUNT(*) FROM medecins WHERE actif = TRUE AND type_medecin = 'SPECIALISTE'";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /** Vérifie si un login est déjà utilisé (tous médecins, actifs ou archivés). */
+    public boolean loginExists(String login) {
+        String sql = "SELECT 1 FROM medecins WHERE login = ?";
+        try (Connection c = DatabaseManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Medecin> findAllGeneralistes() {
+        List<Medecin> list = new ArrayList<>();
+        String sql = "SELECT * FROM medecins WHERE actif = TRUE AND type_medecin = 'GENERALISTE' ORDER BY nom, prenom";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) list.add(map(rs));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<Medecin> findAllSpecialistes() {
+        List<Medecin> list = new ArrayList<>();
+        String sql = "SELECT * FROM medecins WHERE actif = TRUE AND type_medecin = 'SPECIALISTE' ORDER BY nom, prenom";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) list.add(map(rs));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public void updatePassword(int numMedecin, String hashedPassword) {
+        String sql = "UPDATE medecins SET mot_de_passe = ? WHERE num_medecin = ?";
+        try (Connection c = DatabaseManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, hashedPassword);
+            ps.setInt(2, numMedecin);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // ── Mapping ───────────────────────────────────────────────────────────────
 
     private Medecin map(ResultSet rs) throws SQLException {
