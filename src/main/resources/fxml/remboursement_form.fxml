@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="modal-card" maxWidth="560" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.securitesociale.controller.RemboursementFormController">
+
+    <HBox styleClass="modal-header" alignment="CENTER_LEFT">
+        <StackPane styleClass="modal-header-icon">
+            <FontIcon iconLiteral="fas-file-invoice-dollar" iconSize="22" styleClass="modal-header-fa-icon"/>
+        </StackPane>
+        <VBox styleClass="modal-header-text">
+            <Label text="Nouveau Remboursement" styleClass="modal-header-title"/>
+            <Label text="Remplissez les informations du remboursement" styleClass="modal-header-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="modal-body" minWidth="480" spacing="16">
+        <VBox spacing="6">
+            <Label text="Nature *" styleClass="field-label"/>
+            <TextField fx:id="natureField" promptText="Ex : Consultation, Médicaments…"
+                       styleClass="text-field-modern"/>
+        </VBox>
+
+        <HBox spacing="16">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Taux (%) *" styleClass="field-label"/>
+                <TextField fx:id="tauxField" promptText="Ex : 70"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Montant (FCFA) *" styleClass="field-label"/>
+                <TextField fx:id="montantField" promptText="Ex : 50000"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="16">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Mode de règlement *" styleClass="field-label"/>
+                <ComboBox fx:id="modeReglementCombo" promptText="Sélectionner…"
+                          styleClass="combo-box-modern" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="N° Feuille de soins *" styleClass="field-label"/>
+                <TextField fx:id="numFeuilleField" promptText="Ex : 12345"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="errorLabel" text="" styleClass="error-label"
+               visible="false" managed="false" wrapText="true"/>
+    </VBox>
+
+    <HBox styleClass="modal-footer">
+        <Button text="Annuler" styleClass="btn-secondary" onAction="#handleCancel"/>
+        <Button fx:id="saveBtn" text="✔ Enregistrer le remboursement"
+                styleClass="btn-primary" onAction="#handleSave"/>
+    </HBox>
+
+</VBox>

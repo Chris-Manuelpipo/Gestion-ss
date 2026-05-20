@@ -2,6 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <ScrollPane fitToWidth="true" styleClass="content-scroll" hbarPolicy="NEVER"
     xmlns="http://javafx.com/javafx/21"
@@ -15,153 +16,309 @@
         <HBox alignment="CENTER_LEFT">
             <VBox spacing="5" HBox.hgrow="ALWAYS">
                 <Label fx:id="welcomeLabel" text="Bonjour !"
-                       style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0F172A;"/>
+                       style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1A2B42;"/>
                 <Label fx:id="subtitleLabel" text="Gestion Sécurité Sociale · ENSPY"
-                       style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+                       style="-fx-font-size: 13px; -fx-text-fill: #5A6A82;"/>
             </VBox>
             <Label fx:id="dateLabel" text="" styleClass="welcome-date-chip"/>
         </HBox>
 
-        <!-- ══ Ligne 1 — 4 KPI cards ════════════════════════════════════ -->
-        <HBox spacing="14">
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION AGENT SS                                             -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <VBox fx:id="agentSection" spacing="20">
 
-            <!-- Assurés actifs -->
-            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-                <HBox alignment="CENTER_LEFT">
-                    <Label text="👥" styleClass="kpi-icon-box kpi-icon-blue"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="totalAssures" styleClass="kpi-number" text="—"/>
-                </HBox>
-                <VBox spacing="2">
-                    <Label text="Assurés actifs" styleClass="kpi-label"/>
-                    <Label text="Bénéficiaires enregistrés" styleClass="kpi-sublabel"/>
+            <!-- KPI row 1 — Assurés + Médecins -->
+            <HBox spacing="14">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-blue">
+                            <FontIcon iconLiteral="fas-users" iconSize="20" styleClass="kpi-fa-icon"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="totalAssures" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Assurés actifs" styleClass="kpi-label"/>
+                        <Label text="Bénéficiaires enregistrés" styleClass="kpi-sublabel"/>
+                    </VBox>
                 </VBox>
-            </VBox>
 
-            <!-- Médecins généralistes -->
-            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-                <HBox alignment="CENTER_LEFT">
-                    <Label text="🩺" styleClass="kpi-icon-box kpi-icon-green"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="totalGeneralistes" styleClass="kpi-number" text="—"/>
-                </HBox>
-                <VBox spacing="2">
-                    <Label text="Médecins généralistes" styleClass="kpi-label"/>
-                    <Label text="Praticiens actifs" styleClass="kpi-sublabel"/>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-green">
+                            <FontIcon iconLiteral="fas-stethoscope" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-green"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="totalGeneralistes" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Médecins généralistes" styleClass="kpi-label"/>
+                        <Label text="Praticiens actifs" styleClass="kpi-sublabel"/>
+                    </VBox>
                 </VBox>
-            </VBox>
 
-            <!-- Médecins spécialistes -->
-            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-                <HBox alignment="CENTER_LEFT">
-                    <Label text="🔬" styleClass="kpi-icon-box kpi-icon-violet"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="totalSpecialistes" styleClass="kpi-number" text="—"/>
-                </HBox>
-                <VBox spacing="2">
-                    <Label text="Médecins spécialistes" styleClass="kpi-label"/>
-                    <Label text="Spécialistes actifs" styleClass="kpi-sublabel"/>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-violet">
+                            <FontIcon iconLiteral="fas-microscope" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-violet"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="totalSpecialistes" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Médecins spécialistes" styleClass="kpi-label"/>
+                        <Label text="Spécialistes actifs" styleClass="kpi-sublabel"/>
+                    </VBox>
                 </VBox>
-            </VBox>
 
-            <!-- Feuilles en attente -->
-            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-                <HBox alignment="CENTER_LEFT">
-                    <Label text="📄" styleClass="kpi-icon-box kpi-icon-amber"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="feuillesEnAttente" styleClass="kpi-number" text="—"/>
-                </HBox>
-                <VBox spacing="2">
-                    <Label text="Feuilles en attente" styleClass="kpi-label"/>
-                    <Label text="À rembourser" styleClass="kpi-sublabel"/>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-amber">
+                            <FontIcon iconLiteral="fas-file-medical" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-amber"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="feuillesEnAttente" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Feuilles en attente" styleClass="kpi-label"/>
+                        <Label text="À traiter" styleClass="kpi-sublabel"/>
+                    </VBox>
                 </VBox>
-            </VBox>
+            </HBox>
 
-        </HBox>
+            <!-- KPI row 2 — Remboursements -->
+            <HBox spacing="14">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-amber">
+                            <FontIcon iconLiteral="fas-clock" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-amber"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="rembEnAttente" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="En attente" styleClass="kpi-label"/>
+                        <Label text="Remboursements à valider" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
 
-        <!-- ══ Ligne 2 — Accès rapides + Statut ════════════════════════ -->
-        <HBox spacing="14" fillHeight="true">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-green">
+                            <FontIcon iconLiteral="fas-check-circle" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-green"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="rembEffectues" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Effectués" styleClass="kpi-label"/>
+                        <Label text="Remboursements validés" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
 
-            <!-- Accès rapides -->
-            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="0">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-rose">
+                            <FontIcon iconLiteral="fas-times-circle" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-rose"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="rembRejetes" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Rejetés" styleClass="kpi-label"/>
+                        <Label text="Remboursements rejetés" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Accès rapides Agent SS -->
+            <VBox styleClass="card" spacing="0">
                 <padding><Insets top="20" right="20" bottom="12" left="20"/></padding>
-
                 <VBox spacing="4">
                     <Label text="Accès rapides" styleClass="section-title"/>
-                    <Label text="Navigation directe vers les modules principaux"
-                           styleClass="section-subtitle"/>
+                    <Label text="Navigation directe vers les modules principaux" styleClass="section-subtitle"/>
                 </VBox>
-
                 <Separator style="-fx-padding: 12 0 0 0;">
                     <VBox.margin><Insets top="16" bottom="4"/></VBox.margin>
                 </Separator>
-
-                <Button text="👥  Gérer les assurés" styleClass="quick-action-row"
-                        onAction="#handleNavAssures" maxWidth="Infinity"/>
+                <Button text="Gérer les assurés" styleClass="quick-action-row"
+                        onAction="#handleNavAssures" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-users" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
                 <Separator opacity="0.5"/>
-                <Button text="👨‍⚕️  Gérer les médecins" styleClass="quick-action-row"
-                        onAction="#handleNavMedecins" maxWidth="Infinity"/>
+                <Button text="Gérer les médecins" styleClass="quick-action-row"
+                        onAction="#handleNavMedecins" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-user-md" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
                 <Separator opacity="0.5"/>
-                <Button text="💰  Remboursements en attente" styleClass="quick-action-row"
-                        onAction="#handleNavRemboursements" maxWidth="Infinity"/>
+                <Button text="Remboursements en attente" styleClass="quick-action-row"
+                        onAction="#handleNavRemboursements" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-file-invoice-dollar" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
                 <Separator opacity="0.5"/>
-                <Button text="📋  Journal d'audit" styleClass="quick-action-row"
-                        onAction="#handleNavLogs" maxWidth="Infinity"/>
-
+                <Button text="Journal d'audit" styleClass="quick-action-row"
+                        onAction="#handleNavLogs" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-history" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
             </VBox>
 
-            <!-- Statut système -->
-            <VBox styleClass="card" spacing="20" minWidth="300" maxWidth="340">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <!-- Dernières activités (logs) + Statut système -->
+            <HBox spacing="14" fillHeight="true">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="0">
+                    <padding><Insets top="20" right="20" bottom="12" left="20"/></padding>
+                    <VBox spacing="4">
+                        <Label text="Dernières activités" styleClass="section-title"/>
+                        <Label text="Actions récentes dans le système"
+                               styleClass="section-subtitle"/>
+                    </VBox>
+                    <Separator style="-fx-padding: 12 0 0 0;">
+                        <VBox.margin><Insets top="16" bottom="4"/></VBox.margin>
+                    </Separator>
+                    <VBox fx:id="recentLogsContainer" spacing="0"/>
+                </VBox>
 
-                <!-- Titre -->
+                <VBox styleClass="card" spacing="20" minWidth="300" maxWidth="340">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <VBox spacing="4">
+                        <Label text="Statut du système" styleClass="section-title"/>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Region styleClass="status-dot-green"/>
+                            <Label text="Opérationnel" styleClass="kpi-sublabel"/>
+                        </HBox>
+                    </VBox>
+                    <Separator/>
+                    <VBox spacing="14">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Version" styleClass="kpi-sublabel" minWidth="90"/>
+                            <Label text="1.0.0" styleClass="kpi-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Institution" styleClass="kpi-sublabel" minWidth="90"/>
+                            <Label text="ENSPY · Yaoundé" styleClass="kpi-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Base de données" styleClass="kpi-sublabel" minWidth="90"/>
+                            <Label text="securite_sociale" styleClass="kpi-label"/>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Connecté en tant que" styleClass="kpi-sublabel" minWidth="90"/>
+                            <Label fx:id="connectedAsLabel" text="—" styleClass="kpi-label" wrapText="true"/>
+                        </HBox>
+                    </VBox>
+                    <Separator/>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Java 21" styleClass="info-chip"/>
+                        <Label text="JavaFX 21" styleClass="info-chip"/>
+                        <Label text="PostgreSQL" styleClass="info-chip"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!-- SECTION MÉDECIN                                              -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <VBox fx:id="medecinSection" spacing="20">
+
+            <!-- KPI row -->
+            <HBox spacing="14">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-blue">
+                            <FontIcon iconLiteral="fas-notes-medical" iconSize="20" styleClass="kpi-fa-icon"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="mesConsultations" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Mes consultations" styleClass="kpi-label"/>
+                        <Label text="Total des consultations" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-green">
+                            <FontIcon iconLiteral="fas-user" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-green"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="mesPatients" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Mes patients" styleClass="kpi-label"/>
+                        <Label text="Patients consultés" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-amber">
+                            <FontIcon iconLiteral="fas-file-alt" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-amber"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="feuillesEnAttenteMed" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Feuilles en attente" styleClass="kpi-label"/>
+                        <Label text="À compléter" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="14">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <StackPane styleClass="kpi-icon-box kpi-icon-violet">
+                            <FontIcon iconLiteral="fas-clipboard-list" iconSize="20" styleClass="kpi-fa-icon kpi-fa-icon-violet"/>
+                        </StackPane>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="totalFeuillesMed" styleClass="kpi-number" text="—"/>
+                    </HBox>
+                    <VBox spacing="2">
+                        <Label text="Total feuilles" styleClass="kpi-label"/>
+                        <Label text="Feuilles de maladie" styleClass="kpi-sublabel"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Accès rapides Médecin -->
+            <VBox styleClass="card" spacing="0">
+                <padding><Insets top="20" right="20" bottom="12" left="20"/></padding>
                 <VBox spacing="4">
-                    <Label text="Statut du système" styleClass="section-title"/>
-                    <HBox alignment="CENTER_LEFT" spacing="6">
-                        <Region styleClass="status-dot-green"/>
-                        <Label text="Opérationnel" styleClass="kpi-sublabel"/>
-                    </HBox>
+                    <Label text="Accès rapides" styleClass="section-title"/>
+                    <Label text="Actions courantes" styleClass="section-subtitle"/>
                 </VBox>
-
-                <Separator/>
-
-                <!-- Infos -->
-                <VBox spacing="14">
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <Label text="Version" styleClass="kpi-sublabel" minWidth="90"/>
-                        <Label text="1.0.0" styleClass="kpi-label"/>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <Label text="Institution" styleClass="kpi-sublabel" minWidth="90"/>
-                        <Label text="ENSPY · Yaoundé" styleClass="kpi-label"/>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <Label text="Base de données" styleClass="kpi-sublabel" minWidth="90"/>
-                        <Label text="securite_sociale" styleClass="kpi-label"/>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <Label text="Connecté en tant que" styleClass="kpi-sublabel" minWidth="90"/>
-                        <Label fx:id="connectedAsLabel" text="—" styleClass="kpi-label"
-                               wrapText="true"/>
-                    </HBox>
-                </VBox>
-
-                <Separator/>
-
-                <!-- Chips technos -->
-                <HBox spacing="8" alignment="CENTER_LEFT" wrapLength="280">
-                    <Label text="Java 21" styleClass="info-chip"/>
-                    <Label text="JavaFX 21" styleClass="info-chip"/>
-                    <Label text="PostgreSQL" styleClass="info-chip"/>
-                </HBox>
-
+                <Separator style="-fx-padding: 12 0 0 0;">
+                    <VBox.margin><Insets top="16" bottom="4"/></VBox.margin>
+                </Separator>
+                <Button fx:id="btnNewConsultation" text="Nouvelle consultation" styleClass="quick-action-row"
+                        onAction="#handleNewConsultation" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-stethoscope" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
+                <Separator opacity="0.5"/>
+                <Button fx:id="btnNewFeuille" text="Nouvelle feuille de maladie" styleClass="quick-action-row"
+                        onAction="#handleNewFeuille" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-file-medical" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
+                <Separator opacity="0.5"/>
+                <Button fx:id="btnNewPrescription" text="Nouvelle prescription" styleClass="quick-action-row"
+                        onAction="#handleNewPrescription" maxWidth="Infinity">
+                    <graphic><FontIcon iconLiteral="fas-pills" iconSize="15" styleClass="quick-action-icon"/></graphic>
+                </Button>
             </VBox>
-
-        </HBox>
+        </VBox>
 
     </VBox>
 </ScrollPane>

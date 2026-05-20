@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="modal-card" maxWidth="600" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.securitesociale.controller.PrescriptionFormController">
+
+    <HBox styleClass="modal-header" alignment="CENTER_LEFT">
+        <StackPane styleClass="modal-header-icon">
+            <FontIcon iconLiteral="fas-pills" iconSize="22" styleClass="modal-header-fa-icon"/>
+        </StackPane>
+        <VBox styleClass="modal-header-text">
+            <Label text="Nouvelle Prescription" styleClass="modal-header-title"/>
+            <Label text="Remplissez les informations de la prescription" styleClass="modal-header-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="modal-body" minWidth="520" spacing="16">
+        <VBox spacing="6">
+            <Label text="Type de prescription *" styleClass="field-label"/>
+            <ComboBox fx:id="typeCombo" promptText="Sélectionner le type..."
+                      styleClass="combo-box-modern" maxWidth="Infinity"
+                      onAction="#handleTypeChange"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Consultation *" styleClass="field-label"/>
+            <ComboBox fx:id="consultationCombo" promptText="Sélectionner la consultation..."
+                      styleClass="combo-box-modern" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Contenu *" styleClass="field-label"/>
+            <TextArea fx:id="contenuField" promptText="Description de la prescription"
+                      styleClass="text-field-modern"
+                      style="-fx-pref-height: 80px; -fx-padding: 10px 14px;"
+                      wrapText="true"/>
+        </VBox>
+
+        <Separator/>
+
+        <VBox fx:id="medicamentSection" spacing="12" visible="false" managed="false">
+            <Label text="Informations Médicament" styleClass="modal-section-label"/>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Code médicament *" styleClass="field-label"/>
+                    <TextField fx:id="codeMedicamentField"
+                               promptText="Ex : MED-001"
+                               styleClass="text-field-modern" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Nom médicament *" styleClass="field-label"/>
+                    <TextField fx:id="nomMedicamentField"
+                               promptText="Ex : Paracétamol"
+                               styleClass="text-field-modern" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Posologie" styleClass="field-label"/>
+                    <TextField fx:id="posologieField"
+                               promptText="Ex : 1 comprimé matin et soir"
+                               styleClass="text-field-modern" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Dosage" styleClass="field-label"/>
+                    <TextField fx:id="dosageField"
+                               promptText="Ex : 500 mg"
+                               styleClass="text-field-modern" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <VBox fx:id="consultationSpecSection" spacing="12" visible="false" managed="false">
+            <Label text="Informations Consultation Spécialiste" styleClass="modal-section-label"/>
+
+            <VBox spacing="6">
+                <Label text="Type d'examen *" styleClass="field-label"/>
+                <TextField fx:id="typeExamenField"
+                           promptText="Ex : IRM, Scanner, Analyse sanguine..."
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Motif médical *" styleClass="field-label"/>
+                <TextField fx:id="motifMedicalField"
+                           promptText="Ex : Suspicion de fracture"
+                           styleClass="text-field-modern" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Spécialiste *" styleClass="field-label"/>
+                <ComboBox fx:id="specialisteCombo" promptText="Sélectionner le spécialiste..."
+                          styleClass="combo-box-modern" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+
+        <Label fx:id="errorLabel" text="" styleClass="error-label"
+               visible="false" managed="false" wrapText="true"/>
+    </VBox>
+
+    <HBox styleClass="modal-footer">
+        <Button text="Annuler" styleClass="btn-secondary" onAction="#handleCancel"/>
+        <Button fx:id="saveBtn" text="✔ Enregistrer la prescription"
+                styleClass="btn-primary" onAction="#handleSave"/>
+    </HBox>
+
+</VBox>

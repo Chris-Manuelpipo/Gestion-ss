@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" styleClass="content-scroll"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.securitesociale.controller.FeuilleMaladieFormController">
+
+    <VBox spacing="24" style="-fx-padding: 28;">
+        <VBox spacing="6">
+            <Label text="Nouvelle feuille de maladie"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+            <Label text="Remplissez les informations médicales, les détails de la consultation et les prescriptions"
+                   style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+        </VBox>
+
+        <Separator/>
+
+        <!-- ── Section Patient ── -->
+        <VBox styleClass="card" spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+            <Label text="Patient" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+
+            <VBox spacing="6">
+                <Label text="Patient *" styleClass="field-label"/>
+                <ComboBox fx:id="assureCombo" promptText="Sélectionner un patient (médecin traitant)..."
+                          styleClass="combo-box-modern" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+
+        <!-- ── Section Paramètres Médicaux ── -->
+        <VBox styleClass="card medical-zone" spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+            <Label text="Paramètres médicaux" styleClass="section-title" style="-fx-padding: 0 0 4px 0;"/>
+            <Label text="Données confidentielles — non accessibles à l'agent SS" styleClass="section-subtitle"/>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Poids (kg)" styleClass="field-label"/>
+                    <TextField fx:id="poidsField" promptText="Ex: 72.5" styleClass="text-field-modern"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Taille (m)" styleClass="field-label"/>
+                    <TextField fx:id="tailleField" promptText="Ex: 1.75" styleClass="text-field-modern"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Température (°C)" styleClass="field-label"/>
+                    <TextField fx:id="temperatureField" promptText="Ex: 37.2" styleClass="text-field-modern"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Tension artérielle" styleClass="field-label"/>
+                    <TextField fx:id="tensionField" promptText="Ex: 12/8" styleClass="text-field-modern"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Fréq. cardiaque (bpm)" styleClass="field-label"/>
+                    <TextField fx:id="frequenceCardiaqueField" promptText="Ex: 72" styleClass="text-field-modern"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Fréq. respiratoire" styleClass="field-label"/>
+                    <TextField fx:id="frequenceRespiratoireField" promptText="Ex: 16" styleClass="text-field-modern"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Saturation O₂ (%)" styleClass="field-label"/>
+                    <TextField fx:id="saturationField" promptText="Ex: 98" styleClass="text-field-modern"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS"/>
+                <VBox spacing="6" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <VBox spacing="6">
+                <Label text="Antécédents médicaux" styleClass="field-label"/>
+                <TextArea fx:id="antecedentsArea" promptText="Antécédents du patient..."
+                          styleClass="text-field-modern" wrapText="true"
+                          style="-fx-pref-height: 80px; -fx-padding: 10px 14px;"/>
+            </VBox>
+        </VBox>
+
+        <!-- ── Section Consultation ── -->
+        <VBox styleClass="card" spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+            <Label text="Consultation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+
+            <HBox spacing="16">
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Date de la consultation *" styleClass="field-label"/>
+                    <DatePicker fx:id="dateConsultPicker" promptText="jj/mm/aaaa"
+                                styleClass="date-picker-modern" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Motif *" styleClass="field-label"/>
+                    <TextField fx:id="motifField" promptText="Ex : Fièvre persistante"
+                               styleClass="text-field-modern"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6">
+                <Label text="Symptômes" styleClass="field-label"/>
+                <TextArea fx:id="symptomesArea" promptText="Décrivez les symptômes..."
+                          styleClass="text-field-modern" wrapText="true"
+                          style="-fx-pref-height: 80px; -fx-padding: 10px 14px;"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Diagnostic" styleClass="field-label"/>
+                <TextArea fx:id="diagnosticArea" promptText="Diagnostic médical..."
+                          styleClass="text-field-modern" wrapText="true"
+                          style="-fx-pref-height: 80px; -fx-padding: 10px 14px;"/>
+            </VBox>
+        </VBox>
+
+        <!-- ── Section Prescriptions ── -->
+        <VBox styleClass="card medical-zone" spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+            <Label text="Prescriptions" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+
+            <VBox styleClass="card" spacing="12"
+                  style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-width: 1px; -fx-padding: 16;">
+                <HBox spacing="12">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Type de prescription" styleClass="field-label"/>
+                        <ComboBox fx:id="prescriptionTypeCombo" promptText="Type..."
+                                  styleClass="combo-box-modern" maxWidth="Infinity"
+                                  onAction="#handlePrescriptionTypeChange"/>
+                    </VBox>
+                </HBox>
+
+                <VBox fx:id="medicamentFields" spacing="12" managed="false" visible="false">
+                    <Label text="— Médicament —"
+                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2563EB;"/>
+                    <HBox spacing="12">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Code médicament *" styleClass="field-label"/>
+                            <TextField fx:id="codeMedicamentField" promptText="Ex: DOLIPRANE500"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Nom médicament *" styleClass="field-label"/>
+                            <TextField fx:id="nomMedicamentField" promptText="Ex: Doliprane 500mg"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="12">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Posologie" styleClass="field-label"/>
+                            <TextField fx:id="posologieField" promptText="Ex: 1 comprimé 3x/jour"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Dosage" styleClass="field-label"/>
+                            <TextField fx:id="dosageField" promptText="Ex: 500 mg"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <VBox fx:id="consultationSpecFields" spacing="12" managed="false" visible="false">
+                    <Label text="— Consultation Spécialiste —"
+                            style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #7C3AED;"/>
+                    <HBox spacing="12">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Type d'examen *" styleClass="field-label"/>
+                            <TextField fx:id="typeExamenField" promptText="Ex: Cardiologie"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Motif médical" styleClass="field-label"/>
+                            <TextField fx:id="motifMedicalField" promptText="Ex: Douleurs thoraciques"
+                                       styleClass="text-field-modern"/>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="12" alignment="CENTER_RIGHT">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Spécialiste" styleClass="field-label"/>
+                            <TextField fx:id="specialisteField" promptText="Rechercher un spécialiste..."
+                                       editable="false" styleClass="text-field-modern"/>
+                        </VBox>
+                        <Button fx:id="btnSearchSpecialiste" text="Rechercher"
+                                styleClass="btn-secondary" onAction="#handleSearchSpecialiste"
+                                style="-fx-pref-height: 40px; -fx-margin-top: 22px;"/>
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnAddPrescription" text="Ajouter la prescription"
+                            styleClass="btn-primary" onAction="#handleAddPrescription"
+                            style="-fx-pref-height: 36px;"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Prescriptions ajoutées" styleClass="field-label"/>
+                <ListView fx:id="prescriptionListView" prefHeight="120"
+                          style="-fx-background-radius: 8px; -fx-border-color: #E2E8F0; -fx-border-radius: 8px;"/>
+                <HBox spacing="8">
+                    <Button fx:id="btnRemovePrescription" text="Supprimer"
+                            styleClass="btn-danger" onAction="#handleRemovePrescription"
+                            style="-fx-pref-height: 34px; -fx-font-size: 12px;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- ── Section Observations ── -->
+        <VBox styleClass="card" spacing="16">
+            <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+            <Label text="Observations" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+
+            <VBox spacing="6">
+                <TextArea fx:id="observationsArea" promptText="Observations complémentaires..."
+                          styleClass="text-field-modern" wrapText="true"
+                          style="-fx-pref-height: 80px; -fx-padding: 10px 14px;"/>
+            </VBox>
+        </VBox>
+
+        <Label fx:id="errorLabel" text="" styleClass="error-label"
+               visible="false" managed="false" wrapText="true"/>
+
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <Button text="Annuler" styleClass="btn-secondary" onAction="#handleCancel"
+                    style="-fx-pref-height: 40px; -fx-pref-width: 120px;"/>
+            <Button fx:id="saveBtn" text="✔ Enregistrer la feuille de maladie"
+                    styleClass="btn-primary" onAction="#handleSave"
+                    style="-fx-pref-height: 40px;"/>
+        </HBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="content-scroll"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.securitesociale.controller.RemboursementsController">
+
+    <VBox spacing="24">
+        <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+        <!-- ── En-tête ── -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <VBox spacing="4">
+                <Label text="Gestion des Remboursements"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                <Label text="Validez, rejetez et gérez les remboursements"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnAjouter" text="+ Nouveau remboursement"
+                    styleClass="btn-primary" onAction="#handleAjouter"/>
+        </HBox>
+
+        <!-- ── Cartes stats rapides ── -->
+        <HBox spacing="16">
+            <VBox styleClass="stat-card, stat-card-blue" spacing="8" HBox.hgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <FontIcon iconLiteral="fas-file-invoice-dollar" iconSize="24" styleClass="stat-icon stat-icon-blue"/>
+                <Label fx:id="statTotal" text="—" styleClass="stat-number"/>
+                <Label text="Total" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-card, stat-card-orange" spacing="8" HBox.hgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <FontIcon iconLiteral="fas-clock" iconSize="24" styleClass="stat-icon stat-icon-orange"/>
+                <Label fx:id="statEnAttente" text="—" styleClass="stat-number-orange"/>
+                <Label text="En attente" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-card, stat-card-green" spacing="8" HBox.hgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <FontIcon iconLiteral="fas-check-circle" iconSize="24" styleClass="stat-icon stat-icon-green"/>
+                <Label fx:id="statEffectues" text="—" styleClass="stat-number-green"/>
+                <Label text="Effectués" styleClass="stat-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- ── Carte principale ── -->
+        <VBox styleClass="card" spacing="0">
+
+            <!-- Barre de filtre -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+                <Label text="Statut :" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                <ComboBox fx:id="filtreStatut" styleClass="combo-box-modern"
+                          style="-fx-pref-width: 200px; -fx-pref-height: 36px;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="countLabel"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- TableView -->
+            <TableView fx:id="tableView" styleClass="table-view"
+                       style="-fx-border-width: 0; -fx-background-radius: 0;"
+                       VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNum"     text="N°"       prefWidth="60"  minWidth="60"/>
+                    <TableColumn fx:id="colNature"  text="Nature"   prefWidth="160" minWidth="100"/>
+                    <TableColumn fx:id="colTaux"    text="Taux (%)" prefWidth="80"  minWidth="70"/>
+                    <TableColumn fx:id="colMontant" text="Montant"  prefWidth="120" minWidth="90"/>
+                    <TableColumn fx:id="colMode"    text="Mode"     prefWidth="110" minWidth="80"/>
+                    <TableColumn fx:id="colStatut"  text="Statut"   prefWidth="120" minWidth="90"/>
+                    <TableColumn fx:id="colDate"    text="Date"     prefWidth="130" minWidth="100"/>
+                    <TableColumn fx:id="colAgent"   text="Agent"    prefWidth="120" minWidth="90"/>
+                    <TableColumn fx:id="colActions" text="Actions"  prefWidth="180" minWidth="160"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun remboursement trouvé"
+                           style="-fx-text-fill: #94A3B8; -fx-font-size: 14px; -fx-padding: 40;"/>
+                </placeholder>
+            </TableView>
+
+            <!-- Pagination -->
+            <HBox alignment="CENTER" spacing="12">
+                <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+                <Button fx:id="btnPrevPage" text="◀ Précédent"
+                        styleClass="btn-secondary" onAction="#handlePrevPage"
+                        style="-fx-pref-height: 36px; -fx-font-size: 12px;"/>
+                <Label fx:id="pageInfoLabel"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B; -fx-min-width: 120px; -fx-alignment: CENTER;"/>
+                <Button fx:id="btnNextPage" text="Suivant ▶"
+                        styleClass="btn-secondary" onAction="#handleNextPage"
+                        style="-fx-pref-height: 36px; -fx-font-size: 12px;"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

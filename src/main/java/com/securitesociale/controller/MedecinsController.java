@@ -159,8 +159,8 @@ public class MedecinsController {
                 });
             } catch (Exception e) {
                 Platform.runLater(() ->
-                    AlertUtil.erreur("Erreur base de données",
-                        "Impossible de charger les médecins : " + e.getMessage()));
+                    AlertUtil.erreurDetail("Erreur base de données",
+                        "Impossible de charger les médecins", e));
             }
         }).start();
     }
@@ -217,7 +217,7 @@ public class MedecinsController {
 
             loadMedecins();
         } catch (IOException e) {
-            AlertUtil.erreur("Erreur", "Impossible d'ouvrir le formulaire : " + e.getMessage());
+            AlertUtil.erreurDetail("Erreur", "Impossible d'ouvrir le formulaire", e);
         }
     }
 
@@ -241,8 +241,8 @@ public class MedecinsController {
                 });
             } catch (Exception e) {
                 Platform.runLater(() ->
-                    AlertUtil.erreur("Erreur base de données",
-                        "Impossible d'archiver le médecin : " + e.getMessage()));
+                    AlertUtil.erreurDetail("Erreur base de données",
+                        "Impossible d'archiver le médecin", e));
             }
         }).start();
     }

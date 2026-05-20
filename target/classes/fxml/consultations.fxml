@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="content-scroll"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.securitesociale.controller.ConsultationsController">
+
+    <VBox spacing="24">
+        <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+        <!-- ── En-tête ── -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <VBox spacing="4">
+                <Label text="Mes Consultations"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                <Label text="Consultez et gérez vos consultations"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnNewConsultation" text="+ Nouvelle consultation"
+                    styleClass="btn-primary" onAction="#handleNouvelleConsultation"/>
+        </HBox>
+
+        <!-- ── Cartes stats rapides ── -->
+        <HBox spacing="16">
+            <VBox styleClass="stat-card, stat-card-blue" spacing="8" HBox.hgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <FontIcon iconLiteral="fas-calendar-check" iconSize="24" styleClass="stat-icon stat-icon-blue"/>
+                <Label fx:id="statTotal" text="—" styleClass="stat-number"/>
+                <Label text="Consultations ce mois" styleClass="stat-label"/>
+            </VBox>
+            <VBox styleClass="stat-card, stat-card-green" spacing="8" HBox.hgrow="ALWAYS">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <FontIcon iconLiteral="fas-stethoscope" iconSize="24" styleClass="stat-icon stat-icon-green"/>
+                <Label fx:id="statToday" text="—" styleClass="stat-number-green"/>
+                <Label text="Consultations aujourd'hui" styleClass="stat-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- ── Carte principale ── -->
+        <VBox styleClass="card" spacing="0">
+
+            <!-- Barre de recherche -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+                <TextField fx:id="searchField"
+                           promptText="Rechercher par nom du patient, motif..."
+                           styleClass="search-field"
+                           style="-fx-pref-width: 340px;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="countLabel"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- TableView -->
+            <TableView fx:id="tableView" styleClass="table-view"
+                       style="-fx-border-width: 0; -fx-background-radius: 0;"
+                       VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNum"       text="N°"        prefWidth="65"  minWidth="60"/>
+                    <TableColumn fx:id="colDate"      text="Date"      prefWidth="120" minWidth="100"/>
+                    <TableColumn fx:id="colPatient"   text="Patient"   prefWidth="190" minWidth="140"/>
+                    <TableColumn fx:id="colMotif"     text="Motif"     prefWidth="170" minWidth="130"/>
+                    <TableColumn fx:id="colDiagnostic" text="Diagnostic" prefWidth="200" minWidth="150"/>
+                    <TableColumn fx:id="colActions"   text="Actions"   prefWidth="220" minWidth="200"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune consultation trouvée"
+                           style="-fx-text-fill: #94A3B8; -fx-font-size: 14px; -fx-padding: 40;"/>
+                </placeholder>
+            </TableView>
+
+            <!-- Pagination -->
+            <HBox alignment="CENTER" spacing="12">
+                <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+                <Button fx:id="btnPrevPage" text="◀ Précédent"
+                        styleClass="btn-secondary" onAction="#handlePrevPage"
+                        style="-fx-pref-height: 36px; -fx-font-size: 12px;"/>
+                <Label fx:id="pageInfoLabel"
+                       style="-fx-font-size: 13px; -fx-text-fill: #64748B; -fx-min-width: 120px; -fx-alignment: CENTER;"/>
+                <Button fx:id="btnNextPage" text="Suivant ▶"
+                        styleClass="btn-secondary" onAction="#handleNextPage"
+                        style="-fx-pref-height: 36px; -fx-font-size: 12px;"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

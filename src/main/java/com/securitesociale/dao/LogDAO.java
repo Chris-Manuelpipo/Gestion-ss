@@ -1,10 +1,11 @@
 package com.securitesociale.dao;
 
 import com.securitesociale.config.DatabaseManager;
+import com.securitesociale.model.LogEntry;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LogDAO {
 
@@ -17,8 +18,45 @@ public class LogDAO {
             ps.setString(3, details);
             ps.executeUpdate();
         } catch (SQLException e) {
-            // Logging failure must not break the main flow
             e.printStackTrace();
         }
+    }
+
+    public List<LogEntry> findAll() {
+        List<LogEntry> list = new ArrayList<>();
+        String sql = "SELECT * FROM logs ORDER BY created_at DESC";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) list.add(map(rs));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public int count() {
+        String sql = "SELECT COUNT(*) FROM logs";
+        try (Connection c = DatabaseManager.getConnection();
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            return rs.next() ? rs.getInt(1) : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private LogEntry map(ResultSet rs) throws SQLException {
+        LogEntry e = new LogEntry();
+        e.setId(rs.getInt("id"));
+        e.setUtilisateur(rs.getString("utilisateur"));
+        e.setAction(rs.getString("action"));
+        e.setDetails(rs.getString("details"));
+        e.setIpAddress(rs.getString("ip_address"));
+
+        Timestamp ts = rs.getTimestamp("created_at");
+        if (ts != null) e.setCreatedAt(ts.toLocalDateTime());
+
+        return e;
     }
 }
