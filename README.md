@@ -1,6 +1,6 @@
 # Gestion Sécurité Sociale
 
-Application desktop JavaFX pour la gestion des prestations de sécurité sociale — **ENSPY Yaoundé**.
+Application desktop JavaFX pour la gestion des prestations de sécurité sociale.
 
 ## Fonctionnalités
 
